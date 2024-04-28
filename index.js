@@ -30,9 +30,16 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     const touristsPlaceCollection = client.db("dreamDestinationDB").collection('touristsPlace');
+    const countriesCollection = client.db("dreamDestinationDB").collection('countries');
 
     app.get('/addTouristsSpot', async(req, res) => {
         const cursor = touristsPlaceCollection.find();
+        const result = await cursor.toArray();
+        res.send(result);
+    })
+
+    app.get('/countries', async(req, res) => {
+        const cursor = countriesCollection.find();
         const result = await cursor.toArray();
         res.send(result);
     })
@@ -41,6 +48,13 @@ async function run() {
         const id = req.params.id;
         const query = {_id: new ObjectId(id)};
         const result = await touristsPlaceCollection.findOne(query);
+        res.send(result);
+    })
+
+    app.get('/viewDetailsForSpecificCountry/:country_Name', async(req, res) => {
+        const country_name = req.params.country_Name;
+        const cursor = touristsPlaceCollection.find({country_Name : country_name});
+        const result = await cursor.toArray();
         res.send(result);
     })
 
