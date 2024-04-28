@@ -37,12 +37,12 @@ async function run() {
         res.send(result);
     })
 
-    // app.get('/myList/:email', async(req, res) => {
-    //     const email = req.params.email;
-    //     const query = {user_email: new ObjectId(email)};
-    //     const result = await touristsPlaceCollection.find(query);
-    //     res.send(result);
-    // })
+    app.get('/viewDetails/:id', async(req, res) => {
+        const id = req.params.id;
+        const query = {_id: new ObjectId(id)};
+        const result = await touristsPlaceCollection.findOne(query);
+        res.send(result);
+    })
 
     app.post('/addTouristsSpot', async(req, res)=>{
       const newTouristsSpot = req.body;
