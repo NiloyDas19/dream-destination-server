@@ -58,28 +58,30 @@ async function run() {
       res.send(result);
     })
 
-    // app.put('/coffee/:id', async(req, res) => {
-    //   const id = req.params.id;
-    //   const filter = {_id: new ObjectId(id)};
-    //   const options = { upsert: true };
-    //   const updatedCoffee = req.body;
+    app.put('/touristsSpot/:id', async(req, res) => {
+      const id = req.params.id;
+      const filter = {_id: new ObjectId(id)};
+      const options = { upsert: true };
+      const updatedTouristsSpot = req.body;
 
-    //   const updateCoffee = {
-    //     $set: {
-    //       name: updatedCoffee.name,
-    //       chef: updatedCoffee.chef,
-    //       supplier: updatedCoffee.supplier,
-    //       taste: updatedCoffee.taste,
-    //       category: updatedCoffee.category,
-    //       details: updatedCoffee.details,
-    //       photoUrl: updatedCoffee.photoUrl,
-    //     }
-    //   }
+      const updateTouristsSpot = {
+        $set: {
+            tourists_spot_name: updatedTouristsSpot.tourists_spot_name,
+            country_Name: updatedTouristsSpot.country_Name,
+            total_visitors_per_year: updatedTouristsSpot.total_visitors_per_year,
+            location: updatedTouristsSpot.location,
+            short_description: updatedTouristsSpot.short_description,
+            average_cost: updatedTouristsSpot.average_cost,
+            seasonality: updatedTouristsSpot.seasonality,
+            travel_time: updatedTouristsSpot.travel_time,
+            image: updatedTouristsSpot.image,
+        }
+      }
 
-    //   const result = await coffeeCollection.updateOne(filter, updateCoffee, options);
+      const result = await touristsPlaceCollection.updateOne(filter, updateTouristsSpot, options);
 
-    //   res.send(result);
-    // })
+      res.send(result);
+    })
 
 
     app.delete('/touristsSpot/:id', async(req, res) => {
