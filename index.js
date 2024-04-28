@@ -31,16 +31,16 @@ async function run() {
     await client.connect();
     const touristsPlaceCollection = client.db("dreamDestinationDB").collection('touristsPlace');
 
-    // app.get('/coffee', async(req, res) => {
-    //     const cursor = coffeeCollection.find();
-    //     const result = await cursor.toArray();
-    //     res.send(result);
-    // })
+    app.get('/addTouristsSpot', async(req, res) => {
+        const cursor = touristsPlaceCollection.find();
+        const result = await cursor.toArray();
+        res.send(result);
+    })
 
-    // app.get('/coffee/:id', async(req, res) => {
-    //     const id = req.params.id;
-    //     const query = {_id: new ObjectId(id)};
-    //     const result = await coffeeCollection.findOne(query);
+    // app.get('/myList/:email', async(req, res) => {
+    //     const email = req.params.email;
+    //     const query = {user_email: new ObjectId(email)};
+    //     const result = await touristsPlaceCollection.find(query);
     //     res.send(result);
     // })
 
