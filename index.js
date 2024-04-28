@@ -44,6 +44,13 @@ async function run() {
         res.send(result);
     })
 
+    app.get('/myList/:email', async(req, res) => {
+        const email = req.params.email;
+        const cursor = touristsPlaceCollection.find({user_email : email});
+        const result = await cursor.toArray();
+        res.send(result);
+    })
+
     app.post('/addTouristsSpot', async(req, res)=>{
       const newTouristsSpot = req.body;
       console.log(newTouristsSpot);
